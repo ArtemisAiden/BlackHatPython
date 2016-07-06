@@ -90,9 +90,51 @@ def main():
     #if we are listening call server_loop() to set up listener
     if listen:
         server_loop()
-
+#define a tcp client to allow communication from stdin to target
 def client_sender(buffer):
-    pass
+    #create ipv4 (af_Inet) streaming (Sock_Stream) socket
+    client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+    try:
+        #connect socket to target on port
+        client.connect((target,port))
+        #Check if there is data in buffer
+        if len(buffer):
+            #send buffer
+            client.send(buffer)
+        #loop until break is called
+        while True:
+            #define variable to store the response and another another to dertermine when the message is finished
+            recv_len = 1
+            response = ""
+            
+            while recv_len:
+                #save 4096 bytes of data received to data
+                data    = client.recv(4096)
+                recv_len = len(data)
+                #add data to response
+                response += data
+
+                #break loop once a full packet of data has not been received.  Presumably EOF
+                if recv_len < 4096:
+                    break
+
+                #print full response received from socket stream
+                print response,
+
+                #request further input for buffer
+                buffer = raw_input("")
+                #adding a new line to make this function compatible with the spawn shell function
+                buffer += "\n"
+
+                #send new buffer
+                client.send(buffer)
+
+
+    except:
+        print "[*] Exception Encountered.  Closing Connection and Exiting."
+        #tear down connection
+        client.close()
+
 def server_loop():
     pass
 def run_command(command):
