@@ -9,6 +9,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "UDP_Client", "UDP_Client\UD
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "TCP_Server", "TCP_Server\TCP_Server.pyproj", "{4ED4EB04-9085-4397-8BF7-C017C48EF3C7}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DIY_Netcat", "DIY_Netcat\DIY_Netcat.pyproj", "{0CB88A2E-EA10-4BB5-8BD3-010D75925F64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,8 @@ Global
 		{06A13499-4F16-4AC1-8A0D-C94D00D71035}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4ED4EB04-9085-4397-8BF7-C017C48EF3C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4ED4EB04-9085-4397-8BF7-C017C48EF3C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CB88A2E-EA10-4BB5-8BD3-010D75925F64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CB88A2E-EA10-4BB5-8BD3-010D75925F64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
