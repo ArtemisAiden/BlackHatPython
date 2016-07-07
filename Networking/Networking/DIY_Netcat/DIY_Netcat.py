@@ -90,7 +90,8 @@ def main():
     #if we are listening call server_loop() to set up listener
     if listen:
         server_loop()
-#define a tcp client to allow communication from stdin to target
+
+#This function defines a tcp client to allow communication from stdin to target
 def client_sender(buffer):
     #create ipv4 (af_Inet) streaming (Sock_Stream) socket
     client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
@@ -135,10 +136,47 @@ def client_sender(buffer):
         #tear down connection
         client.close()
 
+#This function will setup a simple TCP listening server we can connect to
 def server_loop():
-    pass
+    global target
+    #if no target is defined, we listen on all interfaces
+    #0.0.0.0 represents all interfaces
+    if not len(target):
+        target = "0.0.0.0"
+
+        #define server socketfor IPV4 and streaming
+        server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        #bind socket to target IP and port
+        server.bind((target,port))
+        #set socket to listen and accept up to five connections
+        server.listen(5)
+
+        while True:
+            #this variable stores the incoming connection and address
+            client_socket, addr = server.accept()
+
+            #add connction to new thread so we can continue to listen
+            #build thread to call client_handler with args as client_socket
+            client_thread = threading.Thread(target=client_handler, args=(client_socket,))
+            #Start Thread and return to listening
+            client_thread.start()
+#This function runs the command passed to it.  
+#It is also used to spawn a shell  on the local OS and return output to target
 def run_command(command):
-    pass
+    #trim off the new line
+    command = command.rstrip()
+
+    #run the command and return output
+    try:
+        #this line uses subprocess library to execute the command passed in on -c or from stdin, and saves to output
+        output = subprocess.check_output(command,stderr=subprocess.STDOUT, shell=True)
+    except:
+        output = "Failed to execute command. \r\n"
+    
+    #return output to client
+    return output
+
+
 def client_handler(client_socket):
     pass
 
