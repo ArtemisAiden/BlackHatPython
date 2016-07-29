@@ -178,7 +178,51 @@ def run_command(command):
 
 
 def client_handler(client_socket):
-    pass
+	global upload
+	global command
+	global execute
+	#check for upload
+	if len(upload_destination):
+		#check to see if there is an upload
+		file_buffer = ""
+		#read data until there is no more available
+		while True:
+			data = client_socket.recv(1024)
+			#if there is no data found in data break the loop
+			if not data:
+				break
+			else:
+				file_buffer += data
+		#write the bytes out to file
+		try:
+			file_descriptor = open(upload_destination,"wb")
+			file_descriptor.write(file_buffer)
+			file_descriptor.close()
 
+			#acknowledge the file has been written
+			client_socket.send("Successfully saved file to %s\r\n" % upload_destination)
+		except:
+			client_socket.send("Failed to upload file to %s\r\n" % upload_destination)
+
+		#check for command switch
+		if len(execute):
+			#run the command pass
+			output = run_command(execute)
+			#report the outcome
+			client_socket.send(output)
+
+		#create loop to spawn a command shell if requested
+		if command:
+			while True:
+				#show a command prompt
+				client_socket.send("<RemoteHost>:#")
+				#now receive data until we receive an <Enter> cmd
+				cmd_buffer = ""
+				while "\n" not in cmd_buffer:
+					cmd_buffer += client_socket.recv(1024)
+				#run cmd and save output to response
+				response = run_command(cmd_buffer)
+				#send back the reponse
+				client_socket.send("<RemoteHost>:# %s" % response)
 #execute main
 main()
