@@ -18,7 +18,7 @@ port = 0
 def usage():
     print "DIY_Netcat"
     print 
-    print "Usage: DIY_Netcat.py -t target_host - p port"
+    print "Usage: DIY_Netcat.py -t target_host -p port"
     print "-l --listen                  - listen on [host]:[port] for incoming connections"
     print "-e --execute=file_to_run     - execute given file upon receiving connection"
     print "-c --command                 - initialize a command shell"
@@ -46,7 +46,7 @@ def main():
         usage()
     #read command line args
     try:
-        opts, args = getopt(sys.argv[1:], "hle:t:p:cu:", 
+        opts, args = getopt.getopt(sys.argv[1:], "hle:t:p:cu:", 
                             ["help", "listen", "execute", "target" ,"port", "command", "upload"])
     #if error print it and then print usage
     except getopt.GetoptError as err:
@@ -81,7 +81,7 @@ def main():
     #check if we are listening or just sending data from stdin
     #if not listening read std in and save to buffer.  
     #Then call client_sender() to send data from buffer to client
-    if (not listen) and (len(target)) and (port > 0):
+    if not listen and len(target) and port > 0:
         #read in the buffer from commandline
         #this will block so send CTRL-D if not sending input
         buffer = sys.stdin.read()
@@ -110,7 +110,7 @@ def client_sender(buffer):
             
             while recv_len:
                 #save 4096 bytes of data received to data
-                data    = client.recv(4096)
+                data = client.recv(4096)
                 recv_len = len(data)
                 #add data to response
                 response += data
