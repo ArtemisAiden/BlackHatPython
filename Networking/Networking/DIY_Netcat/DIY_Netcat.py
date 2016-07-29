@@ -138,28 +138,28 @@ def client_sender(buffer):
 
 #This function will setup a simple TCP listening server we can connect to
 def server_loop():
-    global target
+	global port
+	global target
     #if no target is defined, we listen on all interfaces
     #0.0.0.0 represents all interfaces
-    if not len(target):
-        target = "0.0.0.0"
-
+	if not len(target):
+		target = "0.0.0.0"
         #define server socketfor IPV4 and streaming
-        server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         #bind socket to target IP and port
-        server.bind((target,port))
+		server.bind((target,port))
         #set socket to listen and accept up to five connections
-        server.listen(5)
+		server.listen(5)
 
-        while True:
+		while True:
             #this variable stores the incoming connection and address
-            client_socket, addr = server.accept()
+			client_socket, addr = server.accept()
 
             #add connction to new thread so we can continue to listen
             #build thread to call client_handler with args as client_socket
-            client_thread = threading.Thread(target=client_handler, args=(client_socket,))
+			client_thread = threading.Thread(target=client_handler, args=(client_socket,))
             #Start Thread and return to listening
-            client_thread.start()
+			client_thread.start()
 #This function runs the command passed to it.  
 #It is also used to spawn a shell  on the local OS and return output to target
 def run_command(command):
