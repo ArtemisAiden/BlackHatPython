@@ -13,6 +13,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "DIY_Netcat", "DIY_Netcat\DI
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BHP_Source", "BHP_Source\BHP_Source.pyproj", "{1557DA47-0CA0-4E25-B1A1-0C7543C8A567}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "TCP_Proxy", "PythonApplication1\TCP_Proxy.pyproj", "{59C097CD-7093-4C12-B2AC-C976FD5A722A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,8 @@ Global
 		{0CB88A2E-EA10-4BB5-8BD3-010D75925F64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1557DA47-0CA0-4E25-B1A1-0C7543C8A567}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1557DA47-0CA0-4E25-B1A1-0C7543C8A567}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59C097CD-7093-4C12-B2AC-C976FD5A722A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59C097CD-7093-4C12-B2AC-C976FD5A722A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
