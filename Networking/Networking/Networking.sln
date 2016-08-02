@@ -15,6 +15,12 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "BHP_Source", "BHP_Source\BH
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "TCP_Proxy", "PythonApplication1\TCP_Proxy.pyproj", "{59C097CD-7093-4C12-B2AC-C976FD5A722A}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ssh_cmd", "ssh_cmd\ssh_cmd.pyproj", "{A73BF7EF-95FA-4CEE-815A-AC4600B1126B}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ssh_reverse_cmd", "ssh_reverse_cmd\ssh_reverse_cmd.pyproj", "{1CDA7EC0-77C4-463A-BA7B-D13DCFAF8968}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ssh_server", "ssh_server\ssh_server.pyproj", "{5FB9CF57-B07A-48F3-A851-3921E343584F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +39,12 @@ Global
 		{1557DA47-0CA0-4E25-B1A1-0C7543C8A567}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59C097CD-7093-4C12-B2AC-C976FD5A722A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{59C097CD-7093-4C12-B2AC-C976FD5A722A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A73BF7EF-95FA-4CEE-815A-AC4600B1126B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A73BF7EF-95FA-4CEE-815A-AC4600B1126B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CDA7EC0-77C4-463A-BA7B-D13DCFAF8968}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CDA7EC0-77C4-463A-BA7B-D13DCFAF8968}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FB9CF57-B07A-48F3-A851-3921E343584F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FB9CF57-B07A-48F3-A851-3921E343584F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
