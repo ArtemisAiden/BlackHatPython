@@ -23,6 +23,23 @@ class Server (paramiko.ServerInterface):
 server = sys.argv[1]
 ssh_port = int(sys.argv[2])
 
+#This function reads data from remote host and returns the buffer of data
+def receive_from(connection):
+	#initialize buffer to contain string
+	buffer = ""
+	#Set a 2 second timeout (may need to be adjusted based on connection to target)
+	connection.settimeout(2)
+	try:
+		#keep reading into buffer until there is no more data or we timeout
+		while True:
+			data = connection.recv(4096)
+			if not data:
+				break
+			buffer += data
+	except:
+		pass
+	return buffer
+
 try:
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -57,7 +74,8 @@ try:
             command = raw_input("Enter a command: ").strip('\n')
             if command.lower() != 'exit':
                 chan.send(command)
-                print chan.recv(1024)+'\n'
+                response = receive_from(chan)
+                print response+'\n'
             else:
                 chan.send('exit')
                 print "Exiting"
