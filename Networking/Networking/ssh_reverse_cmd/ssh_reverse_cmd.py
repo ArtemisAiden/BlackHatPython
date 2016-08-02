@@ -39,4 +39,4 @@ def ssh_command(ip, user, passwd, command):
         client.close()
     return
 
-ssh_command('10.10.90.195', 'test123', 'testing', 'ClientConnected')
+ssh_command('localhost', 'test123', 'testing', 'ClientConnected')
