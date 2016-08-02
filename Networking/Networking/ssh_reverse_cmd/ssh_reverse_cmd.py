@@ -24,7 +24,7 @@ def ssh_command(ip, user, passwd, command):
     client.connect(ip,username=user, password=passwd)
     #open ssh session created by client
     ssh_session = client.get_transport().open_session()
-    if ssh_session.active():
+    if ssh_session.active:
         ssh_session.send(command)
         #read the banner from ssh server
         print ssh_session.recv(1024)
