@@ -72,7 +72,7 @@ try:
         #define whitespace necessary to even out columns for output
         spacer = " " * (15 - len(ip_header.src_address))
         #print out protocol that was detected and hosts
-        print "Protocol: %s SRC: %s %s-> DST: %s" % (ip_header.protocol, ip_header.src_address, spacer, ip_header.dst_address)
+        print "Protocol: %s SRC: %s %s->   DST: %s" % (ip_header.protocol, ip_header.src_address, spacer, ip_header.dst_address)
 except KeyboardInterrupt:
     #If windows turn off promiscuous mode
     if os.name == "nt":
