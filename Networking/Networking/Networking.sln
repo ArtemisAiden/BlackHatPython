@@ -21,6 +21,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ssh_reverse_cmd", "ssh_reve
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ssh_server", "ssh_server\ssh_server.pyproj", "{5FB9CF57-B07A-48F3-A851-3921E343584F}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "rforward", "rforward\rforward.pyproj", "{3187C2C5-A162-4591-B07A-B41FC5F994DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,8 @@ Global
 		{1CDA7EC0-77C4-463A-BA7B-D13DCFAF8968}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FB9CF57-B07A-48F3-A851-3921E343584F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5FB9CF57-B07A-48F3-A851-3921E343584F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3187C2C5-A162-4591-B07A-B41FC5F994DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3187C2C5-A162-4591-B07A-B41FC5F994DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
