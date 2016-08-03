@@ -2,13 +2,13 @@ import socket
 import os
 import sys
 
-if len(sys.argv[1]):
+try:
     host = str(sys.argv[1])
     print "Will listen on %s" % host
-else:
+except:
     #host to listen on
     host = "127.0.0.1"
-    print "Will listen on 127.0.0.1"
+    print "No target to listen on was defined.  Will listen on 127.0.0.1"
 #set up raw socket and bind it to public interface
 #if host is windows then use ip protocol
 if os.name == "nt":
