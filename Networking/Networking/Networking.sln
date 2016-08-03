@@ -25,6 +25,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "rforward", "rforward\rforwa
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "sniffer_1_pkt", "sniffer_1_pkt\sniffer_1_pkt.pyproj", "{FA90AB95-5406-4379-80BC-2E9F632B7CAE}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "sniffer_decoded", "sniffer_decoded\sniffer_decoded.pyproj", "{CF4DF9F2-15D8-46D1-A8A9-B95CBAAEEB01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,8 @@ Global
 		{3187C2C5-A162-4591-B07A-B41FC5F994DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA90AB95-5406-4379-80BC-2E9F632B7CAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FA90AB95-5406-4379-80BC-2E9F632B7CAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF4DF9F2-15D8-46D1-A8A9-B95CBAAEEB01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF4DF9F2-15D8-46D1-A8A9-B95CBAAEEB01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
