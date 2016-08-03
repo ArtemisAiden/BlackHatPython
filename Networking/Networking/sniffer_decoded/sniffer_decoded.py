@@ -11,7 +11,7 @@ try:
 #If no target was defined from cmd line print usage and exit
 except:
     print "No target to listen on was defined."
-    print "Usage: python .\sniffer_decoded.py [ip of interface to sniff]"
+    print "Usage: python .\sniffer_decoded.py [ip of interface to sniff]\n"
 
 class IP(Structure):
     _fields_ = [
