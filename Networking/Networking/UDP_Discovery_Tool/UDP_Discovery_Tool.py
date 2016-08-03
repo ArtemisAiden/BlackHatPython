@@ -1,9 +1,14 @@
 import socket
 import os
+import sys
 
-#host to listen on
-#host = "10.10.90.195"
-host = "127.0.0.1"
+if sys.argv[1]:
+    host = str(sys.argv[1])
+    print "Will listen on %s" % host
+else:
+    #host to listen on
+    host = "127.0.0.1"
+    print "Will listen on 127.0.0.1"
 #set up raw socket and bind it to public interface
 #if host is windows then use ip protocol
 if os.name == "nt":
@@ -11,9 +16,9 @@ if os.name == "nt":
 #if linux kernel use icmp
 else:
     socket_protocol = socket.IPPROTO_ICMP
-
+#Create RAW socket using parameters determined by OS
 sniffer = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket_protocol)
-
+#Bind Socket to host name
 sniffer.bind((host, 0))
 
 #capture ip headers
