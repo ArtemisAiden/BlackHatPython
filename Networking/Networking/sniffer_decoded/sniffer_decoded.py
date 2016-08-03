@@ -7,12 +7,11 @@ from ctypes import *
 #Check to see if listening target was defined and set host to listen on to that value
 try:
     host = str(sys.argv[1])
-    print "Target defined from command line.  Will listen on %s" % host
-#If no target was defined from cmd line set host to listen to home
+    print "Will listen on %s" % host
+#If no target was defined from cmd line print usage and exit
 except:
-    #host to listen on
-    host = "127.0.0.1"
-    print "No target to listen on was defined.  Will listen on 127.0.0.1"
+    print "No target to listen on was defined."
+    print "Usage: python .\sniffer_decoded.py [ip of interface to sniff]"
 
 class IP(Structure):
     _fields_ = [
@@ -70,6 +69,7 @@ try:
 
         #build IP header from first 20 bytes of buffer
         ip_header = IP(raw_buffer[0:20])
+        #define whitespace necessary to even out columns for output
         spacer = " " * (15 - len(ip_header.src_address))
         #print out protocol that was detected and hosts
         print "Protocol: %s SRC: %s %s-> DST: %s" % (ip_header.protocol, ip_header.src_address, spacer, ip_header.dst_address)
