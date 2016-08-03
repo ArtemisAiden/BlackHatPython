@@ -2,7 +2,7 @@ import socket
 import os
 import sys
 
-if sys.argv[1]:
+if sys.argv:
     host = str(sys.argv[1])
     print "Will listen on %s" % host
 else:
