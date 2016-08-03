@@ -23,6 +23,8 @@ Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ssh_server", "ssh_server\ss
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "rforward", "rforward\rforward.pyproj", "{3187C2C5-A162-4591-B07A-B41FC5F994DB}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "UDP_Discovery_Tool", "UDP_Discovery_Tool\UDP_Discovery_Tool.pyproj", "{8E42C6DF-BFCB-4CDD-BEE6-08A87425FD03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,8 @@ Global
 		{5FB9CF57-B07A-48F3-A851-3921E343584F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3187C2C5-A162-4591-B07A-B41FC5F994DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3187C2C5-A162-4591-B07A-B41FC5F994DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E42C6DF-BFCB-4CDD-BEE6-08A87425FD03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E42C6DF-BFCB-4CDD-BEE6-08A87425FD03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
