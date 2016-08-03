@@ -72,7 +72,7 @@ try:
         ip_header = IP(raw_buffer[0:20])
 
         #print out protocol that was detected and hosts
-        print "Protocol: %s SRC: %s -> DST: %s" % (ip_header.protocol, ip_header.src_address, ip_header.dst_address)
+        print "Protocol: %s SRC: %s \t->\t DST: %s" % (ip_header.protocol, ip_header.src_address, ip_header.dst_address)
 except KeyboardInterrupt:
     #If windows turn off promiscuous mode
     if os.name == "nt":
