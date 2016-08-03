@@ -2,7 +2,8 @@ import socket
 import os
 
 #host to listen on
-host = "10.10.90.195"
+#host = "10.10.90.195"
+host = "127.0.0.1"
 #set up raw socket and bind it to public interface
 #if host is windows then use ip protocol
 if os.name == "nt":
