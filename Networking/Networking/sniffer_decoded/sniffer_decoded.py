@@ -23,7 +23,7 @@ class IP(Structure):
         ("id",              c_ushort),
         ("offset",          c_ushort),
         ("ttl",             c_ubyte),
-        ("protocol_mun",    c_ubyte),
+        ("protocol_num",    c_ubyte),
         ("sum",             c_ushort),
         ("src",             c_ulong),
         ("dst",             c_ulong)
