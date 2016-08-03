@@ -2,9 +2,11 @@ import socket
 import os
 import sys
 
+#Check to see if listening target was defined and set host to listen on to that value
 try:
     host = str(sys.argv[1])
-    print "Will listen on %s" % host
+    print "Target defined from command line.  Will listen on %s" % host
+#If no target was defined from cmd line set host to listen to home
 except:
     #host to listen on
     host = "127.0.0.1"
