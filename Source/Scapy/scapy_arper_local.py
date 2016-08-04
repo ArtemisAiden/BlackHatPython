@@ -18,6 +18,25 @@ gateway_ip      = ""
 packet_count    = ""
 
 #define functions
+
+#define usage text
+def usage():
+    print "Scapy_Arper_Local"
+    print 
+    print "Usage: Scapy_Arper_Local.py -i interface -t target_host -g target_gateway [-pc packet_capture_count]"
+    print "-i --interface               - [Required] Name of network interface to use"
+    print "-t --target                  - [Required] IP address of target machine for ARP Poisoning"
+    print "-g --gateway                 - [Required] IP address of gateway we will forward packets to"
+    print "-p --packets_captured       - [Optional] Number of packets to capture"
+    print
+    print
+    print "Examples:"
+    print "Scapy_Arper_Local.py -i eth0 -t 192.168.1.50 -g 192.168.1.1 -p 2500"
+    print "Scapy_Arper_Local.py --interface eth0 --target 192.168.1.50 --gateway 192.168.1.1 --packets_captured 1500"
+    
+    sys.exit(0)
+
+
 #This function returns the mac address for an IP
 def get_mac(ip_address):
     responses, unanswered = srp(Ether(dst="ff:ff:ff:ff:ff:ff")/ARP(pdst=ip_address), timeout=2, retry=10)
@@ -78,6 +97,39 @@ def main():
     global target_ip
     global gateway_ip
     global packet_count
+
+     #verify args were passed and if not print usage
+    if not len(sys.argv[1:]):
+        usage()
+    #read command line args
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], "i:t:g:p:h", 
+                            ["interface", "target" ,"gateway", "packets_captured", "help"])
+    #if error print it and then print usage
+    except getopt.GetoptError as err:
+        print str(err)
+        usage()
+    #loop through opts defining option as o and corresponding argument as a
+    for o,a in opts:
+        #if help is passed print usage
+        if o in ("-h", "--help"):
+            usage()
+        #if interface is passed set interface to parameter
+        elif o in ("-i","--interface"):
+            interface = a
+        #if target is passed then set target to the value of argument passed with it
+        elif o in ("-t","--target"):
+            target_ip = a
+        #if gateway is passed then set gateway_ip to parameter
+        elif o in ("-g","--gateway"):
+            gateway_ip = a
+        #if upload is passed set upload to value of the argument passed with it
+        elif o in ("-p","--packets_captured"):
+            packet_count = a
+        #if none of the above trigger write an a debug exception for the unhandled options
+        else:
+            assert False, "Unhandled Option"
+
 
     #set interface to use in scapy
     conf.iface = interface
