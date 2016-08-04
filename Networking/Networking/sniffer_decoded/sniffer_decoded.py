@@ -43,6 +43,18 @@ class IP(Structure):
         except:
             self.protocol = str(self.protocol_num)
 
+class ICMP(Structure):
+    _fields_ = [
+        ("type",            c_ubyte),
+        ("code",            c_ubyte),
+        ("checksum",        c_ushort),
+        ("unused",          c_ushort),
+        ("next_hop_mtu",    c_ushort)
+        ]
+    def __new__(self, socket_buffer):
+        return self.from_buffer_copy(socket_buffer)
+    def __init__(self, socket_buffer):
+        pass
 #set up raw socket and bind it to public interface
 #if host is windows then use ip protocol
 if os.name == "nt":
@@ -72,7 +84,17 @@ try:
         #define whitespace necessary to even out columns for output
         spacer = " " * (15 - len(ip_header.src_address))
         #print out protocol that was detected and hosts
-        print "Protocol: %s SRC: %s %s->   DST: %s" % (ip_header.protocol, ip_header.src_address, spacer, ip_header.dst_address)
+        print "Protocol: %s SRC: %s %s->   DST: %s" % (ip_header.protocol, ip_header.src_address, 
+                                                       spacer, ip_header.dst_address)
+        #check for ICMP Traffic
+        if ip_header.protocol == "ICMP":
+            #calculate offset where ICMP packet starts
+            offset = ip_header.ihl * 4
+            buf = raw_buffer[offset:offset + sizeof(ICMP)]
+            #create ICMP Structure
+            icmp_header = ICMP(buf)
+            print "ICMP -> Type: %d Code: %d" % (icmp_header.type, icmp_header.code)
+
 except KeyboardInterrupt:
     #If windows turn off promiscuous mode
     if os.name == "nt":
