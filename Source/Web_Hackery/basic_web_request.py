@@ -4,7 +4,7 @@ url = "http://www.nostarch.com"
 #define dict for headers
 headers = {}
 #add user-agent entry to headers dict
-headers[User-Agent] = "Googlebot"
+headers['User-Agent''] = "Googlebot"
 #define web request
 request = urllib2.Request(url,headers=headers)
 #make request and save the response
