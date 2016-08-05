@@ -35,7 +35,7 @@ def test_remote():
             response.close()
         except urllib2.HTTPError as error:
         #print "Failed %s" % error.code
-        pass
+            pass
 
 for i in range(threads):
     print "Spawning thread: %d" % i
