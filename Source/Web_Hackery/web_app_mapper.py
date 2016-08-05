@@ -39,5 +39,5 @@ def test_remote():
 
 for i in range(threads):
     print "Spawning thread: %d" % i
-    t = threading.Thread("target=test_remote")
+    t = threading.Thread(target=test_remote)
     t.start()
