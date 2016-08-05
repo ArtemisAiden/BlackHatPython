@@ -4,6 +4,7 @@ import os
 import sys
 import threading
 import signal
+import getopt
 
 ##TODO: Command line parsing for global variables##
 
