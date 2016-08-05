@@ -5,7 +5,7 @@ import urllib2
 
 threads = 10
 
-target = "http://blackhatpython.com"
+target = "http://www.michaelbarraclough.com"
 directory = "/home/Disc0rdantMel0dy/Downloads/joomla/"
 filters = [".jpg", "gif", ".png", ".css"]
 
