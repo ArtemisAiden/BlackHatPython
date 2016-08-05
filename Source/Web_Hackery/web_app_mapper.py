@@ -2,6 +2,7 @@ import Queue
 import threading
 import os
 import urllib2
+import sys
 
 threads = 10
 
@@ -36,8 +37,11 @@ def test_remote():
         except urllib2.HTTPError as error:
         #print "Failed %s" % error.code
             pass
-
-for i in range(threads):
-    print "Spawning thread: %d" % i
-    t = threading.Thread(target=test_remote)
-    t.start()
+try:
+    for i in range(threads):
+        print "Spawning thread: %d" % i
+        t = threading.Thread(target=test_remote)
+        t.start()
+except KeyboardInterrupt:
+    print "Received interrupt signal.  Exiting..."
+    sys.exit(0)
