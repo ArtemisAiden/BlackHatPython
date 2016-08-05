@@ -40,6 +40,7 @@ def usage():
 
 #This function returns the mac address for an IP
 def get_mac(ip_address):
+    print "IP passed to get_mac was %s" % ip_address
     responses, unanswered = srp(Ether(dst="ff:ff:ff:ff:ff:ff")/ARP(pdst=ip_address), timeout=2, retry=10)
 
     #return the mac address from a response
